@@ -1,32 +1,21 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
-
+import "./App.css"
+import UserView from "./features/users/userView"
+import { useAppDispatch } from './app/hooks'
+import { fetchUsers } from "./features/users/usersSlice"
 function App() {
-  const [count, setCount] = useState(0)
+  const dispatch = useAppDispatch()
 
   return (
     <div className="App">
+      <h1>Redux/toolkit Playground</h1>
       <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <h1>Counter</h1>
       </div>
-      <h1>Vite + React</h1>
       <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
+        <button onClick={() => dispatch(fetchUsers())}>Load</button>
+        <UserView></UserView>
+        <p></p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
